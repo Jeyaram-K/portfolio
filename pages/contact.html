@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Jeyaram K</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
+
 <body>
     <div id="particles-js"></div>
-    
-    <!-- Theme Switch -->
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-        </label>
-    </div>
+
+    <!-- Theme Switch - Modern Icon Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -45,7 +48,7 @@
     <section class="page-section contact-section">
         <div class="container">
             <h1 class="page-title" data-aos="fade-down">Get In Touch</h1>
-            
+
             <div class="contact-container">
                 <div class="contact-info" data-aos="fade-right">
                     <div class="contact-card">
@@ -67,21 +70,21 @@
                         <a href="https://www.linkedin.com/in/jeyaram-k" target="_blank">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://www.github.com/JeyaramKumaravel" target="_blank">
+                        <a href="https://github.com/Jeyaram-k" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
                 </div>
 
                 <div class="contact-form" data-aos="fade-left">
-                    <form id="contactForm" onsubmit="return handleSubmit(event)">
+                    <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="from_name">Name</label>
+                            <input type="text" id="from_name" name="from_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="from_email">Email</label>
+                            <input type="email" id="from_email" name="from_email" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
@@ -91,8 +94,14 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Sending...
+                            </span>
+                        </button>
                     </form>
+                    <div id="formStatus" class="form-status"></div>
                 </div>
             </div>
         </div>
@@ -101,13 +110,65 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2024 Jeyaram K. All rights reserved.</p>
+            <p>© 2025 Jeyaram K. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../credentials.js"></script>
     <script src="../script.js"></script>
+
+    <!-- EmailJS Form Handler -->
+    <script type="text/javascript">
+        // Initialize EmailJS with credentials from credentials.js
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            const formStatus = document.getElementById('formStatus');
+
+            // Show loading state
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline';
+            submitBtn.disabled = true;
+            formStatus.innerHTML = '';
+
+            // Get form data
+            const templateParams = {
+                from_name: document.getElementById('from_name').value,
+                from_email: document.getElementById('from_email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                to_name: EMAILJS_CONFIG.TO_NAME,
+                to_email: document.getElementById('from_email').value  // Auto-reply goes to sender
+            };
+
+            // Send email using EmailJS
+            emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    formStatus.innerHTML = '<div class="success-message"><i class="fas fa-check-circle"></i> Message sent successfully! I\'ll get back to you soon.</div>';
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(function (error) {
+                    console.log('FAILED...', error);
+                    formStatus.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Failed to send message. Please try again or email me directly.</div>';
+                })
+                .finally(function () {
+                    // Reset button state
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
 </body>
-</html> 
+
+</html>

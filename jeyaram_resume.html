@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeyaram K - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --secondary: #0284c7;
+            --accent: #f59e0b;
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .resume {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            padding: 50px 40px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .header-left h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .header-left .title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .title-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            gap: 12px 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .contact-item i {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 8px;
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* Summary */
+        .summary-text {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .skill-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            background: white;
+            border-radius: 20px;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        /* Experience & Education Cards */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .timeline-company {
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            background: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .timeline-grade {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .responsibility-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .responsibility-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .responsibility-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .project-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-tech {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Additional Info */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .info-block h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .info-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .info-pill {
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            background: #f8fafc;
+            border-radius: 20px;
+            color: var(--text);
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .info-pill:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .info-pill .proficiency {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-left: 4px;
+        }
+
+        /* Achievements */
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-radius: 12px;
+            border: 1px solid #fde68a;
+        }
+
+        .achievement-icon {
+            font-size: 1.5rem;
+        }
+
+        .achievement-text {
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .resume {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .skill-card:hover,
+            .timeline-card:hover,
+            .project-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 24px;
+            }
+
+            .header-left h1 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 24px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-main">
+                <div class="header-left">
+                    <h1>Jeyaram K</h1>
+                    <div class="title">
+                        <span class="title-dot"></span>
+                        Full Stack Developer
+                    </div>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:ramvel2002@gmail.com">ramvel2002@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 8667255296</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://in.linkedin.com/in/jeyaram-k" target="_blank">linkedin.com/in/jeyaram-k</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/Jeyaram-k" target="_blank">github.com/Jeyaram-k</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Summary -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-user"></i></div>
+                    <h2 class="section-title">Professional Summary</h2>
+                </div>
+                <p class="summary-text">
+                    Enthusiastic full stack developer with hands-on experience building
+                    full-stack applications, automation workflows, and developer tools. Proven ability to deliver
+                    production features,
+                    improve performance, and collaborate effectively with cross-functional teams. Seeking a developer
+                    role where I can contribute engineering skills, creativity, and continuous learning to build
+                    scalable, user-focused products.
+                </p>
+            </section>
+
+            <!-- Skills -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-code"></i></div>
+                    <h2 class="section-title">Technical Skills</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>Languages</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Frameworks</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Databases</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">SQLite</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Tools & Platforms</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git & GitHub</span>
+                            <span class="skill-tag">n8n</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-briefcase"></i></div>
+                    <h2 class="section-title">Professional Experience</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-title">Full Stack Intern</div>
+                                <div class="timeline-company">Nucaza Innovations Pvt. Ltd., Coimbatore</div>
+                            </div>
+                            <span class="timeline-date">Feb 2025 – May 2025</span>
+                        </div>
+                        <ul class="responsibility-list">
+                            <li>Developed user authentication modules and implemented CRUD features using the MERN stack
+                                (MongoDB, Express.js, React.js, Node.js).</li>
+                            <li>Collaborated on an internal admin dashboard project, improving page load speed by 30%
+                                through performance optimization.</li>
+                            <li>Performed unit testing, handled debugging tasks, and provided support for ongoing
+                                maintenance of live features.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-title">PHP Intern</div>
+                                <div class="timeline-company">Eminent Technology Solutions, Madurai</div>
+                            </div>
+                            <span class="timeline-date">Dec 2022</span>
+                        </div>
+                        <ul class="responsibility-list">
+                            <li>Developed a COVID-19 Testing Management System using PHP/MySQL to efficiently manage
+                                patient records.</li>
+                            <li>Implemented secure user authentication and admin dashboard for real-time tracking of
+                                test results.</li>
+                            <li>Optimized database schema and form processing, reducing data entry time by 25%.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-rocket"></i></div>
+                    <h2 class="section-title">Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-name">
+                            Xbox Controller
+                            <span class="project-tech">Kotlin</span>
+                            <a href="https://github.com/Jeyaram-k/Xbox-Controller" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://github.com/Jeyaram-K/xbox-controller/releases/tag/v1.0.0" target="_blank" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                        <p class="project-desc">A virtual Xbox controller that turns your Android phone into a wireless
+                            game controller for PC.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">
+                            Staticsdairy
+                            <span class="project-tech">TypeScript</span>
+                            <a href="https://github.com/Jeyaram-k/Staticsdiary" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://staticsdiary.netlify.app/" target="_blank" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                        <p class="project-desc">A modern Next.js TypeScript app for effortlessly tracking income,
+                            expenses, and transfers with clean summaries and interactive charts.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">
+                            N8N Chat
+                            <span class="project-tech">TypeScript</span>
+                            <a href="https://github.com/Jeyaram-k/n8n-chat" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://jrm-n8n-chat.onrender.com" target="_blank" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                        <p class="project-desc">A sleek, modern chat app that connects to any n8n backend via webhooks
+                            supporting text, audio recording, and file uploads for interacting with custom n8n
+                            workflows.</p>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-name">
+                            Covid TMS
+                            <span class="project-tech">PHP</span>
+                            <a href="https://github.com/Jeyaram-k/Covid-TMS" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://jrm-covid-tms.onrender.com/index.php" target="_blank" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                        <p class="project-desc">PHP-based web application (COVID-TMS) for managing COVID-related
+                            transport and tracking.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h2 class="section-title">Education</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-title">Master of Computer Applications (MCA)</div>
+                                <div class="timeline-company">SNS College of Technology, Coimbatore</div>
+                            </div>
+                            <span class="timeline-date">Sep 2023 – May 2025</span>
+                        </div>
+                        <span class="timeline-grade">CGPA: 7.0/10</span>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-title">Bachelor of Science in Computer Science</div>
+                                <div class="timeline-company">Hajee Karutha Rowther Howdia College, Theni</div>
+                            </div>
+                            <span class="timeline-date">July 2020 – May 2023</span>
+                        </div>
+                        <span class="timeline-grade">CGPA: 7.0/10</span>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-title">HSC (Class XII)</div>
+                                <div class="timeline-company">Govt.Hr.Sec.School, Odaipatti, Theni</div>
+                            </div>
+                            <span class="timeline-date">2019 – 2020</span>
+                        </div>
+                        <span class="timeline-grade">59%</span>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="timeline-title">SSLC (Class X)</div>
+                                <div class="timeline-company">TMHNU.Mat.Hr.Sec.School, Theni</div>
+                            </div>
+                            <span class="timeline-date">2017 – 2018</span>
+                        </div>
+                        <span class="timeline-grade">80%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+                    <h2 class="section-title">Additional Information</h2>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h4>Languages</h4>
+                        <div class="info-pills">
+                            <span class="info-pill">Tamil <span class="proficiency">(Native)</span></span>
+                            <span class="info-pill">English <span class="proficiency">(Professional)</span></span>
+                            <span class="info-pill">Hindi <span class="proficiency">(Proficient)</span></span>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <h4>Soft Skills</h4>
+                        <div class="info-pills">
+                            <span class="info-pill">Team Collaboration</span>
+                            <span class="info-pill">Problem Solving</span>
+                            <span class="info-pill">Fast Self-Learning</span>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <h4>Hobbies</h4>
+                        <div class="info-pills">
+                            <span class="info-pill">🤖 AI & Tech</span>
+                            <span class="info-pill">💻 Coding</span>
+                            <span class="info-pill">🌐 Web Apps</span>
+                            <span class="info-pill">♟️ Chess</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Achievements -->
+            <section class="section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fas fa-trophy"></i></div>
+                    <h2 class="section-title">Achievements</h2>
+                </div>
+                <div class="achievement-item">
+                    <span class="achievement-icon">🥇</span>
+                    <span class="achievement-text">Won 1st Prize in Flash Animation at IT Galaxy 2022,
+                        an intercollege competition conducted by Jayaraj Annapakiam College, Periyakulam.</span>
+                </div>
+                <div class="achievement-item">
+                    <span class="achievement-icon">🥈</span>
+                    <span class="achievement-text">Published multiple open-source projects on GitHub and Hugging Face,
+                        including Xbox Controller, Staticsdaily, N8N Chat, Covid TMS, Trained Piper-TTS Tamil Model and
+                        more.</span>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

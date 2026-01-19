@@ -68,7 +68,7 @@ particlesJS('particles-js',
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["Python Developer", "Web Developer", "Fresher"];
+const textArray = ["Full Stack Developer", "MERN Stack Developer", "Web Developer"];
 const typingDelay = 100;
 const erasingDelay = 50;
 const newTextDelay = 2000;
@@ -78,11 +78,11 @@ let charIndex = 0;
 function type() {
     if (typedTextSpan && cursorSpan) {  // Check if elements exist
         if (charIndex < textArray[textArrayIndex].length) {
-            if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+            if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
             typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
             charIndex++;
             setTimeout(type, typingDelay);
-        } 
+        }
         else {
             cursorSpan.classList.remove("typing");
             setTimeout(erase, newTextDelay);
@@ -93,46 +93,58 @@ function type() {
 function erase() {
     if (typedTextSpan && cursorSpan) {  // Check if elements exist
         if (charIndex > 0) {
-            if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+            if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
             charIndex--;
             setTimeout(erase, erasingDelay);
-        } 
+        }
         else {
             cursorSpan.classList.remove("typing");
             textArrayIndex++;
-            if(textArrayIndex>=textArray.length) textArrayIndex=0;
+            if (textArrayIndex >= textArray.length) textArrayIndex = 0;
             setTimeout(type, typingDelay + 1100);
         }
     }
 }
 
 // Start typing animation when page loads
-document.addEventListener("DOMContentLoaded", function() {
-    if(typedTextSpan && cursorSpan) { // Check if elements exist
+document.addEventListener("DOMContentLoaded", function () {
+    if (typedTextSpan && cursorSpan) { // Check if elements exist
         setTimeout(type, 1000);
     }
 });
 
-// Dark Mode Toggle
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+// Dark Mode Toggle - Modern Button
+const themeToggle = document.getElementById('themeToggle');
 
-function switchTheme(e) {
-    if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-    }    
+// Check for saved theme preference or default to light
+const currentTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+// Theme toggle click handler
+if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+        const current = document.documentElement.getAttribute('data-theme');
+        const newTheme = current === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
 }
 
-toggleSwitch.addEventListener('change', switchTheme);
+// Legacy support for old checkbox toggle (if exists)
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+if (toggleSwitch) {
+    toggleSwitch.addEventListener('change', function (e) {
+        if (e.target.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
 
-// Check for saved theme preference
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
     if (currentTheme === 'dark') {
         toggleSwitch.checked = true;
     }
@@ -166,8 +178,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
 // Close menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-links') && 
-        !e.target.closest('.menu-btn') && 
+    if (!e.target.closest('.nav-links') &&
+        !e.target.closest('.menu-btn') &&
         navLinks.classList.contains('active')) {
         menuBtn.classList.remove('active');
         navLinks.classList.remove('active');
@@ -186,13 +198,13 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // Form submission handler
 function handleSubmit(event) {
     event.preventDefault();
-    
+
     // Get form values
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
-    
+
     // You can implement your form submission logic here
     // For now, let's just log the values
     console.log({
@@ -201,12 +213,12 @@ function handleSubmit(event) {
         subject,
         message
     });
-    
+
     // Clear form
     event.target.reset();
-    
+
     // Show success message
     alert('Thank you for your message! I will get back to you soon.');
-    
+
     return false;
-} 
+}

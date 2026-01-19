@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Jeyaram K</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
+
 <body>
     <div id="particles-js"></div>
-    
-    <!-- Theme Switch -->
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-        </label>
-    </div>
+
+    <!-- Theme Switch - Modern Icon Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -45,90 +46,104 @@
     <section class="page-section projects-section">
         <div class="container">
             <h1 class="page-title" data-aos="fade-down">My Projects</h1>
-            
+
             <div class="projects-container">
-                <!-- OCR Project -->
+                <!-- Xbox Controller -->
                 <div class="project-card" data-aos="fade-up">
                     <div class="project-header">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>OCR-Based Multi-Language PDF Conversion Tool</h3>
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Xbox Controller</h3>
                     </div>
                     <div class="project-content">
                         <div class="project-tech">
-                            <span>Python</span>
-                            <span>PyTesseract</span>
-                            <span>PyMuPDF</span>
-                            <span>Tkinter</span>
-                            <span>gTTS</span>
-                            <span>PIL</span>
+                            <span>Kotlin</span>
+                            <span>Android</span>
+                            <span>WebSocket</span>
                         </div>
                         <div class="project-description">
-                            <ul>
-                                <li>Built a desktop application for extracting and processing text from PDFs.</li>
-                                <li>Enabled Tamil and English text recognition, language detection, and real-time translation.</li>
-                                <li>Developed features for text-to-docx conversion and text-to-speech generation.</li>
-                            </ul>
+                            <p>A virtual Xbox controller that turns your Android phone into a wireless game controller
+                                for PC. Features intuitive touch controls and low-latency connection.</p>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-btn"><i class="fab fa-github"></i> View Code</a>
-                            <a href="#" class="project-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Jeyaram-k/Xbox-Controller" target="_blank"
+                                class="project-btn"><i class="fab fa-github"></i> View Code</a>
+                            <a href="https://github.com/Jeyaram-K/xbox-controller/releases/tag/v1.0.0" target="_blank"
+                                class="project-btn"><i class="fas fa-download"></i> Download</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hand Gesture Project -->
+                <!-- Staticsdairy -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-header">
-                        <i class="fas fa-hand-paper"></i>
-                        <h3>Hand Gesture Recognition</h3>
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Staticsdairy</h3>
                     </div>
                     <div class="project-content">
                         <div class="project-tech">
-                            <span>Python</span>
-                            <span>OpenCV</span>
-                            <span>NumPy</span>
-                            <span>Matplotlib</span>
-                            <span>Tkinter</span>
-                            <span>gTTS</span>
+                            <span>TypeScript</span>
+                            <span>Next.js</span>
+                            <span>React</span>
                         </div>
                         <div class="project-description">
-                            <ul>
-                                <li>Developed a vision-based system for sign language interpretation.</li>
-                                <li>Implemented adaptive thresholding and Canny edge detection.</li>
-                                <li>Enhanced communication accessibility for the deaf and mute community.</li>
-                            </ul>
+                            <p>A modern Next.js TypeScript app for effortlessly tracking income, expenses, and transfers
+                                with clean summaries and interactive charts.</p>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-btn"><i class="fab fa-github"></i> View Code</a>
-                            <a href="#" class="project-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Jeyaram-k/Staticsdiary" target="_blank" class="project-btn"><i
+                                    class="fab fa-github"></i> View Code</a>
+                            <a href="https://staticsdiary.netlify.app/" target="_blank" class="project-btn"><i
+                                    class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- COVID-19 Project -->
+                <!-- N8N Chat -->
                 <div class="project-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-header">
+                        <i class="fas fa-comments"></i>
+                        <h3>N8N Chat</h3>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <span>TypeScript</span>
+                            <span>Webhooks</span>
+                            <span>n8n</span>
+                        </div>
+                        <div class="project-description">
+                            <p>A sleek, modern chat app that connects to any n8n backend via webhooks supporting text,
+                                audio recording, and file uploads for interacting with custom n8n workflows.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Jeyaram-k/n8n-chat" target="_blank" class="project-btn"><i
+                                    class="fab fa-github"></i> View Code</a>
+                            <a href="https://jrm-n8n-chat.onrender.com" target="_blank" class="project-btn"><i
+                                    class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Covid TMS -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-header">
                         <i class="fas fa-virus"></i>
-                        <h3>COVID-19 Testing Management System</h3>
+                        <h3>Covid TMS</h3>
                     </div>
                     <div class="project-content">
                         <div class="project-tech">
                             <span>PHP</span>
                             <span>MySQL</span>
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
+                            <span>HTML/CSS</span>
                         </div>
                         <div class="project-description">
-                            <ul>
-                                <li>Designed and implemented a system for managing COVID-19 testing.</li>
-                                <li>Integrated patient registration and result management features.</li>
-                                <li>Streamlined testing operations with dedicated modules.</li>
-                            </ul>
+                            <p>PHP-based web application (COVID-TMS) for managing COVID-related transport and tracking.
+                                Features patient registration and result management.</p>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-btn"><i class="fab fa-github"></i> View Code</a>
-                            <a href="#" class="project-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Jeyaram-k/Covid-TMS" target="_blank" class="project-btn"><i
+                                    class="fab fa-github"></i> View Code</a>
+                            <a href="https://jrm-covid-tms.onrender.com/index.php" target="_blank"
+                                class="project-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
@@ -139,7 +154,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2024 Jeyaram K. All rights reserved.</p>
+            <p>© 2025 Jeyaram K. All rights reserved.</p>
         </div>
     </footer>
 
@@ -148,4 +163,5 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="../script.js"></script>
 </body>
-</html> 
+
+</html>
